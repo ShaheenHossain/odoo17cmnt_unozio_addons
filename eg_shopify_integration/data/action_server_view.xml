@@ -1,0 +1,60 @@
+<odoo>
+    <record id="eg_product_template_update_image_export_server_action" model="ir.actions.server">
+        <field name="name">Update Image at Export</field>
+        <field name="model_id" ref="model_eg_product_template"/>
+        <field name="binding_model_id" ref="model_eg_product_template"/>
+        <field name="state">code</field>
+        <field name="code">action = records.update_image_export_server()</field>
+    </record>
+
+    <record id="eg_product_template_shopify_export_update_server_action" model="ir.actions.server">
+        <field name="name">Update Product at Export</field>
+        <field name="model_id" ref="model_eg_product_template"/>
+        <field name="binding_model_id" ref="model_eg_product_template"/>
+        <field name="state">code</field>
+        <field name="code">action = records.update_product_export_server()</field>
+    </record>
+
+    <record id="eg_product_template_shopify_import_server_action" model="ir.actions.server">
+        <field name="name">Update Product at Import</field>
+        <field name="model_id" ref="model_eg_product_template"/>
+        <field name="binding_model_id" ref="model_eg_product_template"/>
+        <field name="state">code</field>
+        <field name="code">action = records.update_product_import_server()</field>
+    </record>
+
+    <record id="eg_product_template_update_stock_export_server_action" model="ir.actions.server">
+        <field name="name">Update Stock at Export</field>
+        <field name="model_id" ref="model_eg_product_template"/>
+        <field name="binding_model_id" ref="model_eg_product_template"/>
+        <field name="state">code</field>
+        <field name="code">action = records.update_stock_export_server()</field>
+    </record>
+
+    <record id="eg_product_product_shopify_server_action" model="ir.actions.server">
+        <field name="name">Update Stock Export</field>
+        <field name="model_id" ref="model_eg_product_product"/>
+        <field name="binding_model_id" ref="model_eg_product_product"/>
+        <field name="state">code</field>
+        <field name="code">action = records.update_stock_export()</field>
+    </record>
+    <record id="eg_product_template_shopify_export_server_action" model="ir.actions.server">
+        <field name="name">Export to Shopify</field>
+        <field name="model_id" ref="model_eg_product_template"/>
+        <field name="binding_model_id" ref="model_eg_product_template"/>
+        <field name="state">code</field>
+        <field name="code">action = records.export_product_shopify_server()</field>
+    </record>
+
+    <record id="product_template_shopify_server_action" model="ir.actions.server">
+        <field name="name">Export to Shopify</field>
+        <field name="model_id" ref="model_product_template"/>
+        <field name="binding_model_id" ref="model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">if record:
+            action_values = env.ref('eg_shopify_integration.action_export_product_shopify_wizard').read()[0]
+            action_values.update({'context': env.context})
+            action = action_values
+        </field>
+    </record>
+</odoo>

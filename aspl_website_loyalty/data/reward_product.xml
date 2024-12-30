@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="product_reward" model="product.product">
+            <field name="name">Reward Product</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="description">Used Reward Point</field>
+            <field name="taxes_id" eval="False"/>
+        </record>
+    </data>
+
+</odoo>

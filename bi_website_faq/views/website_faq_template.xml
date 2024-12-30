@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="website_faq" inherit_id="website.template_header_default" name="Header FAQ Link" priority="17">
+        <xpath expr="//t[@t-foreach='website.menu_id.child_id']" position="after">
+            <t t-set="lnk" t-value="'/'+ request.httprequest.url.replace( request.httprequest.host_url,'')"/>
+            <li id="web_faq" t-attf-class="nav-item #{'active' if lnk == '/web/faq' else ''}">
+                <a role="menuitem" href="/web/faq" class="nav-link">FAQ</a>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="web_faq" name="FAQ">
+        <t t-call="website.layout">
+            <div id="header_title">
+                <h1 id="header_title_text">
+                    <b>Frequently Asked Questions</b>
+                </h1>
+                <div id="header_title_line"/>
+                <div id="main_que_ans">
+                    <t t-foreach="object" t-as="rec">
+                        <a href="#" id="que_ans_link" t-attf-class="que_ans_links #{'id_%d'%rec.id if rec else ''}">
+                            <div id="que_ans">
+                                <h5 t-attf-class="#{'question_id_%d'%rec.id if rec else ''}">
+                                    <b>
+                                        <t t-esc="rec.name"/>
+                                    </b>
+                                </h5>
+                                <div id="que_ans_ans" t-attf-class="o_hidden #{'ans_id_%d'%rec.id if rec else ''}">
+                                    <span id="main_ans" t-field="rec.answer"/>
+                                </div>
+                            </div>
+                            <hr/>
+                        </a>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

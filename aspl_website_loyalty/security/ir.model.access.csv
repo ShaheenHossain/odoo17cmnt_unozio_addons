@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_website_earn_loyalty,access_website_earn_loyalty,model_website_earn_loyalty,base.group_user,1,1,1,1
+access_website_redeem_loyalty,access_website_redeem_loyalty,model_website_redeem_loyalty,base.group_user,1,1,1,1

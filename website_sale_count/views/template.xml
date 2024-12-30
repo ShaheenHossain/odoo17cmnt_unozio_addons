@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--  website_sale.products_item page  -->
+		<template id="show_sale_count_in_products_item_page" inherit_id="website_sale.products_item" name="Website Sale Count">
+			<xpath expr="//div[hasclass('product_price')]" position="before">
+				
+					<div class="show_sale_count" t-att-data-oe-id="product.id" title="Total No. of Sales Count" style="float: right;color: #337AB7;">
+						<i class="fa fa-shopping-cart"/>
+						<sup class="show_number_of_counts label label-primary" />
+					</div>
+			</xpath>
+		</template>
+		<!--  website_sale.product page  -->
+		<template id="show_sale_count_in_product_page" inherit_id="website_sale.product" name="Website Sale Count">
+			<xpath expr="//a[@id='add_to_cart']" position="after">
+					<div class="show_sale_count_1" title="Total No. of Sales Count" style="color: #fff;background-color: #337AB7;border-color: #337AB7;margin-top: 8px!important;padding: 10px 16px;font-size: 18px;line-height: 1.3333333;width: 150px;">
+						<i class="fa fa-shopping-cart"/>
+						<sup class="show_number_of_counts_1 label label-info"/>
+						<span class="" > + Sold </span>
+					</div>
+			</xpath>
+		</template>
+	</data>
+</odoo>

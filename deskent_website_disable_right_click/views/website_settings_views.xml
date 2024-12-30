@@ -1,0 +1,33 @@
+<odoo>
+    <record id="website_disable_right_click_settings" model="ir.ui.view">
+        <field name="name">website.disable.right.click.settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='favicon']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="website_disable_right_click_settings" groups="website.group_multi_website">
+                    <div class="row">
+                        <div class="col-10">
+                            <label for="disable_right_click" string="Disable Right Click?" class="o_label"/>
+                            <div class="text-muted" style="white-space: nowrap;">Disable right-click on your website.</div>
+                        </div>
+                        <div class="col-2 text-right">
+                            <field name="disable_right_click" class="o_field_boolean"/>
+                        </div>
+                    </div>
+                    <field name="disable_right_click" invisible="1"></field>
+                    <div invisible="disable_right_click != True" class="row">
+                        <div class="col-10">
+                            <label for="show_popup_message" string="Show Popup Message?" class="o_label"/>
+                            <div class="text-muted" style="white-space: nowrap;">Show a popup message when right-click is disabled.</div>
+                        </div>
+
+                        <div class="col-2 text-right">
+                            <field name="show_popup_message" class="o_field_boolean"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo> 

@@ -1,0 +1,8 @@
+<odoo>
+<template id="reorder_button" name="Reorder Button" inherit_id="portal.user_dropdown">
+    <xpath expr="//li[last()]" position="after">
+        <t t-set="is_connected" t-value="not user_id._is_public()"/>
+        <li t-if="is_connected" class="nav-item d-block"><a class="nav-link text-black px-1 px-sm-2" href="/reorder"><i class="fa fa-light fa-rotate-right"></i> <span class="small d-inline d-lg-none d-xl-inline">Reorder</span></a></li>
+    </xpath>
+</template>
+</odoo>

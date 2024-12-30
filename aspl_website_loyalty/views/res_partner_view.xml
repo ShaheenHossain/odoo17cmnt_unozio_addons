@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_partner_form_inherit_id" model="ir.ui.view">
+            <field name="name">inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='internal_notes']" position="after">
+                    <page name="Customer Reward" string="Earned Loyalty">
+                        <field name="earned_loyalty_ids">
+                            <tree>
+                                <field name="order_no"/>
+                                <field name="order_date"/>
+                                <field name="points" sum="Earned Points"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="Customer Redeem" string="Redeem Loyalty">
+                        <field name="redeem_loyalty_ids">
+                            <tree>
+                                <field name="order_no"/>
+                                <field name="order_date"/>
+                                <field name="points" sum="Redeem Point"/>
+                                <field name="points_amount"  sum="Redeem Amount"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="remaining_points"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

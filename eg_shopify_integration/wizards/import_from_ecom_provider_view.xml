@@ -1,0 +1,63 @@
+<odoo>
+    <record model="ir.ui.view" id="import_from_ecom_provider_shopify_form_view">
+        <field name="name">import.from.ecom.provider.shopify.form.view</field>
+        <field name="inherit_id" ref="eg_ecommerce_base.import_from_ecom_provider_form_view"/>
+        <field name="model">import.from.ecom.provider</field>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[1]" position="after">
+                <group invisible="provider != 'eg_shopify' or mapping_type != 'import'">
+                    <group>
+                        <separator string="Product"/>
+                        <field name="spf_product"/>
+                        <field name="spf_product_image" invisible="spf_product == False"/>
+                    </group>
+                    <group>
+                        <separator string="Customer"/>
+                        <field name="spf_import_customer"/>
+                    </group>
+                    <group>
+                        <separator string="Order"/>
+                        <field name="spf_import_sale_order"/>
+                        <field name="spf_product_create_default_import"
+                               invisible="spf_import_sale_order == False"/>
+                        <field name="spf_product_image_sale"
+                               invisible="spf_product_create_default_import == False"/>
+
+                    </group>
+                    <group>
+                        <separator string="Other"/>
+                        <field name="spf_inventory_location_import"/>
+                    </group>
+                </group>
+                <group invisible="provider != 'eg_shopify' or mapping_type != 'export'">
+                    <group>
+                        <separator string="Product"/>
+                        <field name="spf_product_export"/>
+                        <field name="spf_stock_manage" invisible="1"/>
+                    </group>
+                </group>
+                <group invisible="provider != 'eg_shopify' or mapping_type != 'update_import'">
+                    <group>
+                        <separator string="Product"/>
+                        <field name="spf_update_product_import"/>
+                        <field name="spf_update_required_overwrite"
+                               invisible="spf_update_product_import == False"/>
+                    </group>
+                </group>
+                <group invisible="provider != 'eg_shopify' or mapping_type != 'update_export'">
+                    <group>
+                        <separator string="Product"/>
+                        <field name="spf_update_product_export"/>
+                        <field name="spf_update_image_export"/>
+                    </group>
+                    <group>
+                        <separator string="Stock"/>
+                        <field name="spf_update_quantity_export"/>
+                        <field name="spf_stock_from_date"
+                               invisible="spf_update_quantity_export !=  True" required="spf_update_quantity_export == True"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

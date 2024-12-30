@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <template id="inherit_payment" inherit_id="website_sale.payment">
+            <xpath expr="//div[@id='payment_method']" position="before">
+                <t t-set="reward" t-value="request.env.user.partner_id.remaining_points"/>
+                <t t-if="request.env['ir.config_parameter'].sudo().get_param('aspl_website_loyalty.enable_customer_referral')">
+                    <label for="partner_id" class="bmd-label-floating label_partner_id">Referred By: </label>
+                    <input type="text" name="referral_email" id="email" placeholder="Referral Email"/>
+                </t>
+                    <button id="redeem_reward" class="btn btn-success">Redeem Reward</button>
+            </xpath>
+    </template>
+
+    <template id="inherit_total" inherit_id="website_sale.total">
+        <xpath expr="//tr[@id='order_total']" position="before">
+            <tr id="reward_apply">
+                <t t-if="website_sale_order.reward_amount">
+                <td class="text-right">
+                    <span id="applied_reward">
+                        <i class="fa fa-info"/>
+                    </span>
+                    <strong>Used Reward:</strong>
+                </td>
+                <td class="text-xl-right">
+                    <strong t-field="website_sale_order.reward_amount"
+                            t-options='{"widget": "monetary", "display_currency": website_sale_order.pricelist_id.currency_id}'/>
+                </td>
+                </t>
+            </tr>
+        </xpath>
+    </template>
+
+    <template id="view_applied_reward" name="Applied reward Popover">
+        <div t-if="not redeemed_reward" class="well well-lg">
+            No Applied reward Found!
+        </div>
+        <t t-if="redeemed_reward">
+            <t t-foreach="redeemed_reward" t-as="redeemed_reward">
+                <div class="row mb8 cart_line" style="display: contents;">
+                    <div style="float:left;margin-left:0px;width:80%;">
+                        <b>
+                            Reward -
+                            <span t-field="redeemed_reward.name"/>
+                        </b>
+                        <br/>
+                        <span>Amount -
+                            <span t-field="redeemed_reward.points_amount"
+                                  t-options="{'widget': 'monetary','display_currency': website.currency_id}"/>
+                        </span>
+
+                        <input type="hidden" name="csrf_token" id="csrf"
+                               t-att-value="request.csrf_token()"/>
+                        <input type="hidden" name="amount" id="amount"
+                               t-att-value="redeemed_reward.points_amount"/>
+                    </div>
+                    <div>
+                        <button class="cancel_applied_reward" id="cancel_applied_reward" style="" t-att-data-id="redeemed_reward.id" t-att-data-csrf="request.csrf_token()" t-att-data-amount="redeemed_reward.points_amount">
+                            <i class="fa fa-times"/>
+                        </button>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="journal_payment" model="ir.ui.view">
+        <field name="name">journal_payment</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+           <xpath expr="//group[@name='availability']" position="inside">
+               <group string="Payment Followup" name="payment_followup">
+                <field name="journal_id" context="{'default_type': 'bank'}"
+                                           required = "state != 'disabled'"/>
+                                </group>
+           </xpath>
+        </field>
+    </record>
+
+</odoo>

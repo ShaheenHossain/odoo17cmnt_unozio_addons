@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="res_config_settings_view_form_loyalty_setting">
+            <field name="name">res.config.settings.form.view.inherit.loyalty</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//block[@id='sale_invoicing_settings']" position="after">
+                        <h2 groups="website.group_multi_website">Loyalty Points</h2>
+                        <div class="row mt16 o_settings_container" name="pricing_setting_container">
+                            <div class="col-12 col-lg-6 o_setting_box" id="loyalty_setting">
+                                <div class="o_setting_left_pane">
+                                    <field name="enable_loyalty"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="enable_loyalty"/>
+                                    <div class="text-muted" id="enable_wallet">
+                                        Website Loyalty Points
+                                    </div>
+                                    <div class="content-group mt16"
+                                         invisible="not enable_loyalty">
+                                        <div class="row mt16">
+                                            <label string="Minimum Order Value" for="min_order_value"
+                                                   class="col-md-3 o_light_label"/>
+                                            <field name="min_order_value"
+                                                   invisible="not enable_loyalty"
+                                                   required="enable_loyalty"/>
+                                        </div>
+                                        <div class="row mt16">
+                                            <label string="Point Calculation" for="point_calculation" class="col-md-3 o_light_label"/>
+                                            <field name="point_calculation"
+                                                   invisible="not enable_loyalty"
+                                                   required="enable_loyalty"/>
+                                            <label for="point_calculation" string="%"/>
+                                        </div>
+                                        <div class="row mt16">
+                                            <label string="Amount Per Point" for="amount_per_point" class="col-md-3 o_light_label"/>
+                                            <field name="amount_per_point"
+                                                   invisible="not enable_loyalty"
+                                                   required="enable_loyalty"/>
+                                        </div>
+                                        <div class="text-muted" id="amount-per-point">
+                                            E.x: Reward Amount = Earned Points * Amount per point
+                                        </div>
+                                        <div class="row mt16">
+                                            <label string="Exclude Category" for="exclude_category" class="col-md-3 o_light_label"/>
+                                            <field name="exclude_category" widget="many2many_tags"
+                                                   invisible="not enable_loyalty"/>
+                                        </div>
+                                        <div class="row mt16">
+                                            <label string="Exclude Tax" for="exclude_tax"
+                                                   class="col-md-3 o_light_label"/>
+                                            <field name="exclude_tax"
+                                                   invisible="not enable_loyalty"
+                                                   required="enable_loyalty"/>
+                                        </div>
+                                        <div class="row mt16">
+                                            <label string="Reward Product" for="reward_product"
+                                                   class="col-md-3 o_light_label"/>
+                                            <field name="reward_product"
+                                                   invisible="not enable_loyalty"
+                                                   required="enable_loyalty"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="customer-referral-setting"
+                                                   invisible="not enable_loyalty"
+                                                   required="enable_loyalty">
+                                <div class="o_setting_left_pane">
+                                    <field name="enable_customer_referral" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="enable_customer_referral"/>
+                                    <div class="text-muted" id="enable_referral">
+                                        Customer Referral
+                                    </div>
+                                    <div class="content-group mt16"
+                                           invisible="not enable_customer_referral">
+                                        <div class="row mt16">
+                                            <label string="Referral Event" for="referral_event" class="col-md-3 o_light_label"/>
+                                            <field name="referral_event"
+                                                   invisible="not enable_customer_referral"
+                                                   required="enable_customer_referral" />
+                                        </div>
+                                        <div class="row mt16">
+                                            <label string="Referral Points" for="referral_point_calculation" class="col-md-3 o_light_label"/>
+                                            <field name="referral_point_calculation"
+                                                   invisible="not enable_customer_referral"
+                                                   required="enable_customer_referral" />
+                                            <label for="referral_point_calculation" string="%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.common.form.inherit.product_data_feed_url</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product_data_feed_number.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='feed_extra']" position="inside">
+                <group string="URLs" name="extra_urls">
+                    <field name="feed_video_url" widget="url"/>
+                    <field name="feed_mobile_url" widget="url"/>
+                    <field name="feed_canonical_url" widget="url"/>
+                    <field name="feed_app_url" widget="url"/>
+                    <field name="feed_ios_url" widget="url"/>
+                    <field name="feed_android_url" widget="url"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
