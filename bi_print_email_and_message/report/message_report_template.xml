@@ -1,0 +1,160 @@
+<odoo>
+    <template id="report_message_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div style="border:1px solid black;">
+                            <center>
+                                    <p style="font-size: 22px; font-family:Verdana, Arial,sans-serif; font-weight:bold; background-color: #808080;">Message Information</p>
+                            </center>
+                             </div>
+                        
+                            <div style="border:1px solid black;">
+                                <center>
+                                <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold;" t-esc="o.subject"/>
+                            </center>
+                            </div>
+
+                            <div class="row">
+                                <div class="column" style="width: 50%;">
+                                    <div style="border:1px solid black; margin right:8px;">
+                                        <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">From:
+                                            <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.email_from"/>
+                                        </p>    
+                                    </div>
+                                </div>
+
+                                <div class="column" style="width: 50%;">
+                                    <div style="border:1px solid black;">
+                                        <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Date:
+                                                <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.date"/>
+                                        </p>        
+                                    </div>
+                                </div>
+                            </div>
+                           
+
+                           <div class="row">
+                                <div class="column" style="width: 50%;">
+                                    <div style="border:1px solid black; margin right:8px;">
+                                        <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Related Doccument Model:
+                                            <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.model"/>
+                                        
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="column" style="width: 50%;">
+                                    <div style="border:1px solid black;">
+                                        <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Related Doccument ID:
+                                            <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.res_id"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                           
+
+                           <div class="row">
+                                <div class="column" style="width: 50%;">
+                                    <div style="border:1px solid black; margin right:8px;">
+                                        <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Message Record Name:
+                                            <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.record_name"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="column" style="width: 50%;">
+                                    <div style="border:1px solid black;">
+                                            <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Parent Message:
+                                                <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.parent_id.record_name"/>
+                                            </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="column" style="width: 50%;">
+                                    <div style="border:1px solid black; margin right:8px;">
+                                        <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Type:
+                                            <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.message_type"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="column" style="width: 50%;">
+                                    <div style="border:1px solid black;">
+                                        <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Sub Type:
+                                            <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif;" t-esc="o.subtype_id.name"/> 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="column" style="width: 50%;">
+                                    <div style="border:1px solid black; margin right:8px;">
+                                        <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Author:
+                                            <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.author_id.name"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="column" style="width: 50%;">
+                                    <div style="border:1px solid black; margin right:8px;">
+                                        <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Employee Only:
+                                            <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif;" t-esc="o.is_internal"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                         
+                            <div style="border:1px solid black; padding:22px;">
+                                <p style="font-size: 22px; font-family:Verdana, Arial,sans-serif; font-weight:bold;">Body</p>   
+                                    <span style="font-size: 22px; font-family:Verdana, Arial,sans-serif; font-weight:bold;" t-esc="o.body"/> 
+                            </div>
+
+                            <div style="border:1px solid black;">
+                            <center>
+                                    <p style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; background-color: #808080;">Recipients</p>
+                            </center>
+                             </div>
+
+
+                            <div style="border:1px solid black; padding:22px;">          
+                            <span style="font-size: 12; font-family:Verdana, Arial,sans-serif; font-weight:bold; margin-left: 8px;">Recipients:
+                            </span>
+                                    <tr>
+                                        <td>
+                                            <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;"  t-esc="', '.join(map(lambda x: (x.name), o.partner_ids))"/>
+                                            
+                                        </td>
+                                    </tr>
+                            </div>
+
+
+                            <div style="border:1px solid black; padding:22px;">          
+                            <span style="font-size: 12; font-family:Verdana, Arial,sans-serif; font-weight:bold; margin-left: 8px;">Partner With Need Action:
+                            </span>
+                                    <tr>
+                                        <td>
+                                            <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px; " t-esc="', '.join(map(lambda x: (x.name), o.notified_partner_ids))"/>
+                                        </td>
+                                    </tr>
+                            </div>
+
+
+                            <div style="border:1px solid black; padding:22px;">          
+                            <span style="font-size: 12; font-family:Verdana, Arial,sans-serif; font-weight:bold; margin-left: 8px;">Favorited By:
+                            </span>     
+                                <tr>
+                                    <td>
+                                        <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px; " t-esc="', '.join(map(lambda x: (x.name), o.starred_partner_ids))"/>
+                                    </td>
+                                </tr>
+                        
+                            </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

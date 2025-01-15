@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="email_validation_widget.EmailFieldValidation" t-inherit="web.EmailField" t-inherit-mode="primary">
+        <xpath expr="." position="inside">
+            <span class="alert alert-danger pt-1" t-if="!isValidEmail">Invalid Email!</span>
+        </xpath>
+        <xpath expr="//input" position="after">
+            <a
+            t-if="props.record.data[props.name] and isValidEmail"
+            t-att-href="'mailto:'+props.record.data[props.name]"
+            class="ms-3 d-inline-flex align-items-center"
+            target="_blank"
+            >
+                <i class="fa fa-envelope" data-tooltip="Send Email" aria-label="Send Email"></i>
+            </a>
+        </xpath>
+        
+    </t>
+</templates>

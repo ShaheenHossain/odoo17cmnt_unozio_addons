@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    Copyright (C) 2020 Cetmix OÜ
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU LESSER GENERAL PUBLIC LICENSE for more details.
+
+    You should have received a copy of the GNU LESSER GENERAL PUBLIC LICENSE
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<odoo>
+
+    <!--  Edit cron  -->
+    <record id="action_configure_spam_cron" model="ir.actions.act_window">
+        <field name="name">Edit cron</field>
+        <field name="res_model">ir.cron</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field
+            name="res_id"
+            ref="cx_mail_messages_filter.ir_corn_cx_mail_messages_filter_unlink_spam"
+        />
+        <field name="target">new</field>
+    </record>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">
+            res.config.settings.view.form.inherit.cetmix.messages.filter.settings
+        </field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="prt_mail_messages.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <div id="prt_mail_messages" position="after">
+                <div id="cx_mail_messages_filter">
+                    <block title="Message Filters" name="cx_mail_messages_filter">
+                        <setting
+                            id="delete_spam_after"
+                            help="Delete spam message in (days)"
+                        >
+                            <field name="delete_spam_after" />
+                            <div class="mt8">
+                                <button
+                                    name="%(action_configure_spam_cron)d"
+                                    string="Configure action"
+                                    type="action"
+                                    class="oe_link"
+                                    icon="fa-arrow-right"
+                                />
+                            </div>
+                        </setting>
+                        <setting
+                            id="fallback_model_id"
+                            help="Used if no filter is found"
+                        >
+                            <field name="fallback_model_id" />
+                        </setting>
+                    </block>
+                </div>
+            </div>
+        </field>
+    </record>
+    <!-- ## Action ## -->
+    <record id="action_messages_filter" model="ir.actions.act_window">
+        <field name="name">Message Filters</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cx.message.filter</field>
+        <field
+            name="view_id"
+            ref="cx_mail_messages_filter.cx_message_filter_view_tree"
+        />
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"active_test": False}</field>
+        <field name="target">current</field>
+    </record>
+    <!-- ## Menu -->
+    <menuitem
+        id="menu_messages_filter_settings"
+        name="Message Filters"
+        parent="prt_mail_messages.prt_messages_settings"
+        sequence="1"
+        action="action_messages_filter"
+        groups="base.group_system"
+    />
+</odoo>

@@ -1,0 +1,30 @@
+<odoo>
+
+    <record id="paperformat_email" model="report.paperformat">
+        <field name="name">Email Report Paperformat</field>
+        <field name="default" eval="True" />
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">250</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">23</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">35</field>
+        <field name="dpi">95</field>
+    </record>
+
+    <record id="action_email_report" model="ir.actions.report">
+        <field name="name">Email Template</field>
+        <field name="model">mail.mail</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bi_print_email_and_message.report_email_template</field>
+        <field name="report_file">bi_print_email_and_message.report_email_template</field>
+        <field name="binding_model_id" ref="model_mail_mail"/>
+        <field name="paperformat_id" ref="bi_print_email_and_message.paperformat_email" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

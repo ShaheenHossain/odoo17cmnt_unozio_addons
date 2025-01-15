@@ -1,0 +1,15 @@
+.sms_form_send_button {
+    margin-left: 10px;
+    color: #FFFFFF;
+    background-color: #71639e;
+    border-color: #71639e;
+    border-radius: 4px !important;
+}
+
+body {
+    margin: 0px;
+}
+
+button.ua_service_login_btn.ua_primary_action_btn {
+    margin-top: 11px;
+}

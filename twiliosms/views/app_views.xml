@@ -1,0 +1,212 @@
+<odoo>
+  <data>
+
+
+<!-- Iframe Popup View -->
+    <record id="view_custom_model_form" model="ir.ui.view">
+        <field name="name">iframe.model.form</field>
+        <field name="model">iframe.model</field>
+        <field name="arch" type="xml">
+            <form string="Iframe Model Form">
+                <sheet>
+                    <group>
+                       <field name="name" invisible="1" />
+                       <field name="description" invisible="1" />
+                       <field name="dynamic_fields" style="width: 738px;overflow:hidden;" nolabel="1" widget="html" options="{'no_label': True}" />
+                    </group>
+                </sheet>
+                <footer> </footer>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Single form view button action -->
+    <record id="action_custom_model_form" model="ir.actions.act_window">
+        <field name="name">Send Twilio SMS </field>
+        <field name="res_model">iframe.model</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_custom_model_form"/>
+        <field name="target">new</field>
+        <field name="context">{'active_id': active_id, 'appCode': 'twilioforodoocrm'}</field>
+    </record>
+
+
+    <!-- Contact Detail Form -->
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <data>
+                    <div name="button_box" position="inside">
+                        <button name="%(action_custom_model_form)d" string="Send Twilio SMS" type="action" class="sms_form_send_button oe_highlight"/>
+                    </div>
+            </data>
+        </field>
+    </record>
+
+    
+    
+    <!-- Open Selected Records Action . Open in popup -->
+    <record id="open_selected_records" model="ir.actions.act_window">
+        <field name="name">Send Twilio SMS</field>
+        <field name="res_model">iframe.model</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_custom_model_form"/>
+        <field name="target">new</field>
+        <field name="context">{'active_ids': active_ids, 'appCodeTPA': 'twilio'}</field>
+    </record>
+
+    <!-- Set Send button in Contacts List View -->
+    <record id="res_partner_view_tree" model="ir.ui.view">
+        <field name="name">res.partner.tree.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <header>
+                    <button name="%(open_selected_records)d" type="action" class="o_button_generate_leads oe_highlight" string="Send Twilio SMS" />
+                </header>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Set Send button in Leads Form View -->
+    <record id="crm_reveal_lead_opportunity_form" model="ir.ui.view">
+        <field name="name">crm.lead.inherited.crm</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                 <button name="%(open_selected_records)d" type="action" class="oe_highlight" string="Send Twilio SMS" />
+            </xpath>
+            
+        </field>
+    </record>
+
+    <!-- Set Send button in Leads List View -->
+    <record id="view_crm_case_tree_action" model="ir.ui.view">
+            <field name="name">crm.lead.tree.action</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+            <field name="arch" type="xml">
+                <!-- Add a custom action in the action dropdown menu -->
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="create">false</attribute>
+                    <attribute name="delete">false</attribute>
+                </xpath>
+                <xpath expr="//tree" position="inside">
+                    <header>
+                           <button name="%(open_selected_records)d" type="action" class="oe_highlight" string="Send Twilio SMS" />
+                    </header>
+                </xpath>
+            </field>
+    </record>
+
+    <!-- Set Send button in Leads List View -->
+   <record id="crm_case_tree_view_leads_twilio" model="ir.ui.view">
+        <field name="name">crm.lead.tree.opportunity.inherit.sms</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(open_selected_records)d" type="action" class="oe_highlight" string="Send Twilio SMS" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Set Send button in Leads Opportunity List View -->
+    <record id="crm_case_tree_view_oppor_twilio" model="ir.ui.view">
+        <field name="name">crm.lead.tree.opportunity.inherit.sms</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(open_selected_records)d" type="action" class="oe_highlight" string="Send Twilio SMS" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Twilio history module List view -->
+    <record model="ir.ui.view" id="twiliosms.historylog">
+        <field name="name">twiliosms list</field>
+        <field name="model">twilio.history</field>
+        <field name="arch" type="xml">
+          <tree create="false">
+            <field name="name"/>
+            <field name="model_name"/>
+            <field name="Message"/>
+            <field name="Customer_Number"/>
+            <field name="From"/>
+            <field name="Direction"/>
+            <field name="Status"/>
+            <field name="Channel"/>
+            <field name="WhatsApp_Message"/>
+            <field name="Sender_Phone"/>
+            <field name="Media_URL"/>
+            <field name="timestamp"/>
+          </tree>
+        </field>
+      </record>
+    <!-- actions opening views on models -->
+
+  
+   <!-- Open action Contacts module List view   -->
+    <record model="ir.actions.act_window" id="contacts_page">
+        <field name="name">Contacts</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Open action for Leads module List view   -->
+    <record model="ir.actions.act_window" id="crm_page">
+        <field name="name">Leads</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Open action Twilio history module List view   -->
+    <record model="ir.actions.act_window" id="twiliosms_history">
+        <field name="name">Twilio History</field>
+        <field name="res_model">twilio.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--  Twilio history Details view   -->
+    <record id="view_form_twilio_history" model="ir.ui.view">
+        <field name="name">twilio.history.form</field>
+        <field name="model">twilio.history</field>
+        <field name="arch" type="xml">
+            <form string="Twilio History" create="false">
+                <sheet>
+                    <group>
+                       <field name="name"/>
+                      <field name="model_name"/>
+                      <field name="Message"/>
+                      <field name="Customer_Number"/>
+                      <field name="From"/>
+                      <field name="Direction"/>
+                      <field name="Status"/>
+                      <field name="Channel"/>
+                      <field name="WhatsApp_Message"/>
+                      <field name="Sender_Phone"/>
+                      <field name="Media_URL"/>
+                      <field name="timestamp"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu bar-->
+    <menuitem name="Twilio SMS" id="twiliosms_menu_root" 
+        groups="base.group_user"/>
+    <!-- Menu items -->
+    <menuitem name="Twilio History" id="twiliosms.menu_1" action="twiliosms_history" parent="twiliosms_menu_root" />
+    <menuitem name="Models" id="twiliosms.menu_2" parent="twiliosms_menu_root"/>
+    <!-- Sub Menu -->
+    <menuitem name="Contacts" id="contact" parent="twiliosms.menu_2" action="contacts_page"/>
+    <menuitem name="Leads" id="leads" parent="twiliosms.menu_2" action="crm_page"/>
+
+  </data>
+</odoo>

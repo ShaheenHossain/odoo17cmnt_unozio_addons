@@ -1,0 +1,255 @@
+<odoo>
+    <template id="report_email_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="container">
+                        
+                            <div style="border:1px solid black;">
+                             <center>
+                                    <p style="font-size: 22px; font-family:Verdana, Arial,sans-serif; font-weight:bold; background-color: #808080;">Email Information</p>
+                            </center>
+                             </div>
+
+                            <div style="border:1px solid black;">
+                                <center>
+                                    <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold;" t-esc="o.subject"/>
+                                </center>
+                            </div>
+
+                           
+                             <div style="border:1px solid black;">
+                                <center>
+                                    <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold;" t-esc="o.create_uid.name"/>
+                                     <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold;"> on </span>    
+                                    <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold;" t-esc="o.create_date"/>               
+                                </center>
+                            </div>
+
+                            <div class="row">
+                            <div class="column" style="width: 50%;">
+                                <div style="border:1px solid black; margin right:8px;">
+                                    <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">From:
+                                        <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.email_from"/>
+                                    </p>
+                                </div>
+                            </div>
+                            
+
+                            <div class="column" style="width: 50%;">
+                                <div style="border:1px solid black;">
+                                    <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">To:
+                                        <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.email_to"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="column" style="width: 50%;">
+                                <div style="border:1px solid black; margin right:8px;">
+                                    <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">To(Partners):
+                                        <span  style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="', '.join(map(lambda x: (x.name), o.recipient_ids))"/>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="column" style="width: 50%;">
+                                <div style="border:1px solid black;">
+                                    <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">CC:
+                                        <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.email_cc"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="column" style="width: 50%;">
+                                <div style="border:1px solid black; margin right:8px;">
+                                    <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Reply-To:
+                                        <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.reply_to"/>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="column" style="width: 50%;">
+                                <div style="border:1px solid black;">
+                                    <p style="font-size: 15px; font-family:Verdana, Arial,sans-serif; font-weight:bold; text-indent: 10px;">Scheduled Send Date:
+                                        <span style="font-size: 15px; font-family:Verdana, Arial,sans-serif; text-indent: 10px;" t-esc="o.scheduled_date"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                        </div>
+                            <div>   
+                                <p style="font-size: 22px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;">Body</p>   
+                                             
+                            </div>
+                            </div>   
+                        <div class="container">
+                            <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                                <tbody>
+                                    <tr>
+                                        <td align="center">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                                                <tbody>
+                                                    <!-- HEADER -->
+
+                                                    <tr>
+                                                        <td align="center" style="min-width: 590px;">
+                                                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td valign="middle">
+                                                                            <strong>
+                                                                                <span style="font-size: 20px;" t-esc="o.subject"/>
+                                                                            </strong>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="2" style="text-align:center;">
+                                                                            <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;" contenteditable="false"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- CONTENT -->
+                                                    <tr>
+                                                        <td align="center" style="min-width: 590px;">
+                                                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td valign="top" style="font-size: 13px;">
+                                                                            <span t-esc="o.body"/>
+                                                                        </td>
+                                                                    
+                                                                    </tr>
+                                                                     
+                                                                    <tr>
+                                                                        <td style="text-align:center;">
+                                                                            <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" contenteditable="false"/>
+                                                                        </td>
+                                                                       
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                         <td>
+                                                                        <div style="margin: 16px 8px 16px 8px; text-align: center;">
+                                                                            <a style="background-color: #875A7B; padding: 16px 8px 16px 8px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                                            <span t-esc="o.model"/>
+                                                                        </a>
+                                                                        </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    
+                                                                   
+                                                                </tbody>
+                                                                 
+                                                            </table>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                   
+                                                    <!-- FOOTER -->
+
+                                                    <tr>
+                                                   
+                                                        <td align="center" style="min-width: 590px;">
+                                                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td valign="middle" align="left">
+                                                                            <span style="font-size: 10px;" t-esc="o.recipient_ids.company_id.phone or ''"/>
+                                                                            <span style="font-size: 10px;" t-esc="o.recipient_ids.company_id.email or ''"/>| 
+                                                                            <a style="text-decoration:none; color: #454748;" t-esc="o.recipient_ids.company_id.email or ''"></a>
+                                                                            <span t-esc="o.recipient_ids.company_id.website or ''"/>| 
+                                                                            <a style="text-decoration:none; color: #454748;" t-esc="o.recipient_ids.company_id.website or ''"></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- POWERED BY -->
+                                                    <tr>
+                                                        <td align="center" style="min-width: 590px;">
+                                                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="text-align: center; font-size: 13px;"> Powered by <a target="_blank" href="https://www.odoo.com?utm_source=dbutm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="container">
+                            <table class="table table-bordered" style="border:1px solid black;">
+                                 <p style="font-size: 22px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;">Attachments</p>   
+                                <thead>
+                                    <tr>
+                                        <th style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px; background-color: #808080;" scope="col">Name</th>
+                                        <th style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px; background-color: #808080;" scope="col">Resource Model</th>
+                                        <th style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px; background-color: #808080;" scope="col">Resource Field</th>
+                                        <th style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px; background-color: #808080;" scope="col">Resource ID</th>
+                                        <th style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px; background-color: #808080;" scope="col">Type</th>
+                                        <th style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px; background-color: #808080;" scope="col">Company</th>
+                                        <th style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px; background-color: #808080;" scope="col">Created By</th>
+                                        <th style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px; background-color: #808080;" scope="col">Created On</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="data" t-value="o.attachment_ids"/>
+                                    <t t-foreach="data" t-as="line">
+                                        <tr>
+                                            <td>
+                                                <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;" t-esc="line.name"/>
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;" t-esc="line.res_model"/>
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;" t-esc="line.res_field"/>
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;" t-esc="line.res_id"/>
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;" t-esc="line.type"/>
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;" t-esc="o.recipient_ids.company_id.name"/>
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;" t-esc="line.create_uid.name"/>
+                                            </td>
+                                            <td>
+                                                <span style="font-size: 16px; font-family:Verdana, Arial,sans-serif; font-weight:bold; padding:10px;" t-esc="line.create_date"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
