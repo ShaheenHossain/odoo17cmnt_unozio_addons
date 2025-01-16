@@ -1,9 +1,3 @@
-# Copyright 2020-2023 Onestein (<http://www.onestein.eu>)
-# Copyright 2020 Akretion (<http://www.akretion.com>)
-# Copyright 2023 Le Filament (https://le-filament.com)
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
-
 from lxml import etree
 
 from odoo.tests import common

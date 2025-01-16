@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="mail_whitelist_form_view" model="ir.ui.view">
+            <field name="name">ir.mail.whitelist</field>
+            <field name="model">ir.mail_server</field>
+            <field name="inherit_id" ref="base.ir_mail_server_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='smtp_authentication']" position="after">
+                    <field name="enable_whitelist"/>
+                </xpath>
+
+                <xpath expr="//page[@name='connection']" position="after">
+                    <page name="mail_whitelist" string="Mail Whitelist"
+                          invisible="enable_whitelist==False">
+                        <div class="text-muted fst-italic" role="alert" colspan="2">
+                            <p>Please add emails or domains to the list below. Emails will only be sent to those added
+                                to the list.</p>
+                        </div>
+                        <field name="mail_whitelist_ids">
+                            <tree editable="top">
+                                <field name="name"/>
+                                <field name="enabled"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
